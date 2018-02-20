@@ -1,7 +1,7 @@
 [
   {
 
-  "batchNumber": "13",
+  "batchNumber": "Batch #13",
   "startDate": "2018-02-11",
   "endDate": "2018-03-11",
   "students": [{
@@ -35,7 +35,7 @@
   ]
 },
 {
-  "batchNumber": "14",
+  "batchNumber": "Batch #14",
   "startDate": "2018-03-12",
   "endDate": "2018-04-11",
   "students": [{
@@ -63,6 +63,14 @@
         "remark": "excelente",
         "colorCode": "green",
         "day": "2018-04-02"
+      },{
+        "remark": "excelente",
+        "colorCode": "yellow",
+        "day": "2018-04-03"
+      },{
+        "remark": "excelente",
+        "colorCode": "red",
+        "day": "2018-04-04"
       }]
     }
 

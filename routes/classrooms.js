@@ -30,19 +30,16 @@ module.exports = io => {
     })
     .post('/classrooms', authenticate, (req, res, next) => {
 
-      console.log('body : ',req.body)
+
       const newClassroom = {
 
-        batchNumber : req.body.batchNumber,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        students : req.body.students
+        ...req.body
       }
 
       Classroom.create(newClassroom)
         .then((classroom) => {
           io.emit('action', {
-            type: 'GAME_CREATED',
+            type: 'CLASSROOM_CREATED',
             payload: classroom
           })
           res.json(classroom)
@@ -62,7 +59,7 @@ module.exports = io => {
           Classroom.findByIdAndUpdate(id, { $set: updatedClassroom }, { new: true })
             .then((classroom) => {
               io.emit('action', {
-                type: 'GAME_UPDATED',
+                type: 'CLASSROOM_UPDATED',
                 payload: classroom
               })
               res.json(classroom)
@@ -76,7 +73,7 @@ module.exports = io => {
       Classroom.findByIdAndRemove(id)
         .then(() => {
           io.emit('action', {
-            type: 'GAME_REMOVED',
+            type: 'CLASSROOM_REMOVED',
             payload: id
           })
           res.status = 200
