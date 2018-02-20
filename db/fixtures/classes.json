@@ -2,15 +2,15 @@
   {
 
   "batchNumber": "13",
-  "startDate": "Feb 10, 2018",
-  "endDate": "Mar 1, 2018",
+  "startDate": "2018-02-11",
+  "endDate": "2018-03-11",
   "students": [{
       "name": "john",
       "photo": "pathtophoto",
       "evaluations": [{
         "remark": "good",
         "colorCode": "red",
-        "day": "Feb 10, 2018"
+        "day": "2018-03-09"
       }]
     },
     {
@@ -19,7 +19,7 @@
       "evaluations": [{
         "remark": "meh",
         "colorCode": "yellow",
-        "day": "Feb 12, 2018"
+        "day": "2018-03-09"
       }]
     },
     {
@@ -28,7 +28,7 @@
       "evaluations": [{
         "remark": "fair",
         "colorCode": "green",
-        "day": "Feb 14, 2018"
+        "day": "2018-03-09"
       }]
     }
 
@@ -36,15 +36,15 @@
 },
 {
   "batchNumber": "14",
-  "startDate": "Mar 1, 2018",
-  "endDate": "Apr 1, 2018",
+  "startDate": "2018-03-12",
+  "endDate": "2018-04-11",
   "students": [{
       "name": "nick",
       "photo": "pathtophoto",
       "evaluations": [{
         "remark": "very good",
         "colorCode": "green",
-        "day": "Mar 10, 2018"
+        "day": "2018-04-09"
       }]
     },
     {
@@ -53,7 +53,7 @@
       "evaluations": [{
         "remark": "not even close",
         "colorCode": "red",
-        "day": "Mar 14, 2018"
+        "day": "2018-04-03"
       }]
     },
     {
@@ -62,7 +62,7 @@
       "evaluations": [{
         "remark": "excelente",
         "colorCode": "green",
-        "day": "Mar 21, 2018"
+        "day": "2018-04-02"
       }]
     }
 
