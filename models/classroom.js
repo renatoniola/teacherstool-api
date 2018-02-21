@@ -11,7 +11,7 @@ const evaluationSchema = new Schema({
 const studentSchema = new Schema({
   studentId: { type: Schema.Types.ObjectId },
   name: { type : String },
-  photo: { type : String },
+  photo: { type : String , default : 'http://via.placeholder.com/250x150'},
   evaluations : [evaluationSchema]
 })
 

@@ -6,7 +6,7 @@
   "endDate": "2018-03-11",
   "students": [{
       "name": "john",
-      "photo": "pathtophoto",
+
       "evaluations": [{
         "remark": "good",
         "colorCode": "red",
@@ -15,7 +15,7 @@
     },
     {
       "name": "jane",
-      "photo": "pathtophoto",
+
       "evaluations": [{
         "remark": "meh",
         "colorCode": "yellow",
@@ -24,7 +24,7 @@
     },
     {
       "name": "tom",
-      "photo": "pathtophoto",
+
       "evaluations": [{
         "remark": "fair",
         "colorCode": "green",
@@ -49,7 +49,7 @@
     },
     {
       "name": "sarah",
-      "photo": "pathtophoto",
+    
       "evaluations": [{
         "remark": "not even close",
         "colorCode": "red",

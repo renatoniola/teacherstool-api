@@ -48,6 +48,13 @@ module.exports = io => {
       if (!req.classroom) { return next() }
 
       const { name , photo , evaluations } = req.body
+
+      let createStudentObject = function(name , photo , evaluations){
+         if( photo != '' && photo !=   undefined){
+            return { name, photo , evaluations }
+         }
+         return { name , evaluations }
+      }
       // const userId = req.account._id
       //
       // if (req.classroom.students.filter((p) => p.userId.toString() === userId.toString()).length > 0) {
@@ -59,7 +66,7 @@ module.exports = io => {
       // Add the user to the students
       //let classroom = req.classroom.findById(req.params.id)
 
-      req.classroom.students = [...req.classroom.students, { name , photo , evaluations  }]
+      req.classroom.students = [...req.classroom.students, createStudentObject(name , photo , evaluations)]
 
       req.classroom.save()
         .then((newClassroom) => {
@@ -85,23 +92,33 @@ module.exports = io => {
       res.json(req.students)
     })
 
-    .delete('/classrooms/:id/students', authenticate, (req, res, next) => {
+    .delete('/classrooms/:id/student/:studentId', authenticate, loadClassroom,(req, res, next) => {
+
       if (!req.classroom) { return next() }
 
-      const userId = req.account._id
-      const currentStudent = req.classroom.students.filter((p) => p.userId.toString() === userId.toString())[0]
+      // const userId = req.account._id
+      // const currentStudent = req.classroom.students.filter((p) => p.userId.toString() === userId.toString())[0]
+      //
+      // if (!currentStudent) {
+      //   const error = Error.new('You are not a student of this classroom!')
+      //   error.status = 401
+      //   return next(error)
+      // }
+      console.log(req.body)
+      const classroomId = req.params.id
+      const  studentId  = req.params.studentId
+      console.log('studentId : ',studentId)
 
-      if (!currentStudent) {
-        const error = Error.new('You are not a student of this classroom!')
-        error.status = 401
-        return next(error)
-      }
+      req.classroom.students = req.classroom.students.filter((p) => p._id.toString() !== studentId.toString())
 
-      req.classroom.students = req.classroom.students.filter((p) => p.userId.toString() !== userId.toString())
       req.classroom.save()
         .then((classroom) => {
           req.classroom = classroom
-          next()
+          io.emit('action', {
+            type: 'CLASSROOM_UPDATED',
+            payload: req.classroom
+          })
+          //next()
         })
         .catch((error) => next(error))
 
