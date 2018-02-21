@@ -12,7 +12,15 @@
         "colorCode": "red",
         "day": "2018-03-09"
       }]
-    },
+    },{
+        "name": "jenny",
+
+        "evaluations": [{
+          "remark": "good",
+          "colorCode": "green",
+          "day": "2018-03-09"
+        }]
+      },
     {
       "name": "jane",
 
@@ -40,7 +48,7 @@
   "endDate": "2018-04-11",
   "students": [{
       "name": "the dude",
-      "photo": "http://res.cloudinary.com/renatos/image/upload/v1519215232/dude_w7wg7v.jpg",
+      "photo": "http://res.cloudinary.com/renatos/image/upload/c_fill,g_north,h_150,w_250/v1519215232/dude_w7wg7v.jpg",
       "evaluations": [{
         "remark": "very good",
         "colorCode": "green",
@@ -48,8 +56,8 @@
       }]
     },
     {
-      "name": "sarah",
-    
+      "name": "Mark",
+      "photo" : "http://res.cloudinary.com/renatos/image/upload/c_fill,g_north,h_150,w_250/v1517153792/bwcivo1di9weqmafjh0c.jpg",
       "evaluations": [{
         "remark": "not even close",
         "colorCode": "red",
@@ -58,7 +66,7 @@
     },
     {
       "name": "walter white",
-      "photo": "http://res.cloudinary.com/renatos/image/upload/v1519215385/white_c6x6l3.jpg",
+      "photo": "http://res.cloudinary.com/renatos/image/upload/c_fill,g_north,h_150,w_250/v1519215385/white_c6x6l3.jpg",
       "evaluations": [{
         "remark": "excelente",
         "colorCode": "green",
