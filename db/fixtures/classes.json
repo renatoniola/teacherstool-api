@@ -39,8 +39,8 @@
   "startDate": "2018-03-12",
   "endDate": "2018-04-11",
   "students": [{
-      "name": "nick",
-      "photo": "pathtophoto",
+      "name": "the dude",
+      "photo": "http://res.cloudinary.com/renatos/image/upload/v1519215232/dude_w7wg7v.jpg",
       "evaluations": [{
         "remark": "very good",
         "colorCode": "green",
@@ -57,8 +57,8 @@
       }]
     },
     {
-      "name": "renato",
-      "photo": "pathtophoto",
+      "name": "walter white",
+      "photo": "http://res.cloudinary.com/renatos/image/upload/v1519215385/white_c6x6l3.jpg",
       "evaluations": [{
         "remark": "excelente",
         "colorCode": "green",
