@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const evaluationSchema = new Schema({
   remark: { type : String , required: function() { return ( this.colorCode === 'red' || this.colorCode === 'yellow')  } },
-  colorCode : { type : String },
+  colorCode : { type : String  },
   day: { type : Date , default : Date.now }
 })
 
