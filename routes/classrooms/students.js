@@ -1,6 +1,7 @@
 // routes/classrooms.js
 const router = require('express').Router()
 const passport = require('../../config/auth')
+const dateFormat = require('dateformat');
 const { Classroom, User } = require('../../models')
 
 const authenticate = passport.authorize('jwt', { session: false })
@@ -91,7 +92,77 @@ module.exports = io => {
       })
       res.json(req.students)
     })
+    .post('/classrooms/:id/student/:studentId',  authenticate,loadClassroom,(req, res, next) => {
+      if (!req.classroom) { return next() }
 
+      const { studentId  }  = req.params
+
+      const { colorCode , remark, day }  = req.body
+
+      if(colorCode === '' || day === ''){
+        res.status(422).json({ error : 'colorcode and day are mandatory'});
+      }
+
+      if( ( colorCode === 'yellow' || colorCode === 'red') && ( remark === '' || remark === undefined ) ){
+        res.status(422).json({ error : 'if you assign a red or yellow label you need to provide a remark'});
+      }
+
+      let student = req.classroom.students.filter((p) => p._id.toString() === studentId.toString())[0]
+
+      if( student.evaluations.length > 0 ) {
+        for ( let i = 0 ; i < student.evaluations.length ; i++){
+        //  console.log( student.evaluations[i].day.toString(), day )
+          //console.log( dateFormat(student.evaluations[i].day, "yyyy-mm-dd") ,dateFormat(day, "yyyy-mm-dd"))
+
+          if( dateFormat(student.evaluations[i].day, "yyyy-mm-dd") === dateFormat(day, "yyyy-mm-dd") ){
+            res.status(422)
+            .json({  error : 'there is already an evaluation for this date '});
+          }
+        }
+      }
+
+      req.classroom.students.map( (student ,index) => {
+        if(student._id.toString() === studentId.toString() ){
+
+           let newEvaluations = student.evaluations
+           newEvaluations.push({
+             colorCode,
+             remark,
+             day
+           })
+          console.log(newEvaluations)
+
+           newEvaluations.sort(function(a, b){
+              var keyA = new Date(a.day),
+                  keyB = new Date(b.day);
+              // Compare the 2 dates
+              if(keyA < keyB) return -1;
+              if(keyA > keyB) return 1;
+              return 0;
+          });
+
+           console.log(newEvaluations)
+           req.classroom.students[index].evaluations = newEvaluations
+           req.classroom.save()
+             .then(() => {
+
+               io.emit('action', {
+                 type: 'CLASSROOM_UPDATED',
+                 payload: req.classroom
+               })
+             })
+             .catch((error) => next(error))
+        }
+
+
+      })
+
+
+
+
+
+
+    })
     .delete('/classrooms/:id/student/:studentId', authenticate, loadClassroom,(req, res, next) => {
 
       if (!req.classroom) { return next() }
@@ -104,7 +175,7 @@ module.exports = io => {
       //   error.status = 401
       //   return next(error)
       // }
-      console.log(req.body)
+
       const classroomId = req.params.id
       const  studentId  = req.params.studentId
       console.log('studentId : ',studentId)
